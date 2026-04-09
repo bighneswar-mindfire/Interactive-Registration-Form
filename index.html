@@ -12,17 +12,17 @@
     <div>
         <form onsubmit="event.preventDefault();formSubmit();">
 
-            <label for="name">Full name:</label>
-            <input type="text" id="name"><br>
+            <label for="name">Full name:</label><label class="validation hide" id="nameValidation">Name is required</label>
+            <input type="text" id="name" ><br>
             <br>
-            <label for="mail">Email address:</label>
+            <label for="mail">Email address:</label><label class="validation hide" id="mailValidation">Email is required</label>
             <input type="email" id="mail"><br>
             <br>
-            <label for="phone">Phone number:</label>
-            <input type="text" id="phone"><br>
+            <label for="phone">Phone number:</label><label class="validation hide" id="phoneValidation">Phone no. is required</label>
+            <input type="tel" id="phone"><br>
             <br>
 
-            <label for="gender">Gender:</label>
+            <label for="gender">Gender:</label><label class="validation hide" id="genderValidation">Gender is required</label>
 
             <input type="radio" id="male" value="Male" name="gender">
             <label for="male">Male</label>
