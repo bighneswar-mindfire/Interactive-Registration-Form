@@ -2,8 +2,126 @@ body {
     margin: 24px;
 }
 
+label {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16px;
+    width: 110px;
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
+
+/* name */
+th:nth-child(1) { width: 25%; } 
+/* email */
+th:nth-child(2) { width: 30%; } 
+/* phone no. */
+th:nth-child(3) { width: 14%; } 
+/* gender */
+th:nth-child(4) { width: 9%; } 
+/* action buttons */
+th:nth-child(5) { width: 22%; }
+
+td {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #000000;
+    text-align: center;
+    padding: 8px;
+}
+
+table tr td button{
+    border-radius: 10px;
+    border: 0px;
+    padding: 10px 14px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#table-heading{
+    background-color: #97a1c9;
+}
+
+input{
+    width: 70%;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #000000 ;
+    border-radius: 10px;
+    font-size: 14px;
+
+}
+
+input[type="radio"] {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: 11%;
+    background-color: #4fab52;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    width: 40%;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #3d8a41;
+
+}
+
+.validation {
+    color: #e45151;
+    margin-left: 120px;
+    width: auto;
+    font-size: 14px;
+}
+
 .highlight-row{
     background-color: #d0f2d7;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+#edit {
+    background-color:#a3d3e2 ;
+    cursor: pointer;
+}
+
+#edit:hover {
+    background-color:#80bdcf ;
+}
+
+#delete {
+    background-color:#e45151 ;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#delete:hover {
+    background-color: #db3737;
 }
 
 .hide{
