@@ -1,3 +1,11 @@
+body {
+    margin: 24px;
+}
+
+.highlight-row{
+    background-color: #d0f2d7;
+}
+
 .hide{
     display: none;
 }

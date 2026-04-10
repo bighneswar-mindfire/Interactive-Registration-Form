@@ -48,8 +48,8 @@ function insertRecord(formData) {
     newRow.appendChild(genderCell);
 
     var btnCell = document.createElement("td");
-    btnCell.innerHTML = `<button onclick="onEdit(this)">Edit</button>
-                        <button onclick="deleteData(this)">Delete</button>`;
+    btnCell.innerHTML = `<button id="edit" onclick="onEdit(this)">Edit</button>
+                        <button  id="delete" onclick="deleteData(this)">Delete</button>`;
     newRow.appendChild(btnCell);
 
     table.append(newRow);
@@ -72,6 +72,13 @@ function onEdit(td) {
     console.log(selectedRow);
     document.querySelector("input[type='submit']").value = "Update";
 
+    var allValidations=document.querySelectorAll(".validation");
+    allValidations.forEach(label=>{
+        label.classList.add("hide");
+    })
+
+    selectedRow.classList.add("highlight-row");
+
     document.getElementById("name").value = selectedRow.cells[0].textContent;
     document.getElementById("mail").value = selectedRow.cells[1].textContent;
     document.getElementById("phone").value = selectedRow.cells[2].textContent;
@@ -79,6 +86,7 @@ function onEdit(td) {
     radios.forEach(radio => {
         radio.checked = radio.value == selectedRow.cells[3].textContent;
     })
+    
 }
 
 function updateData(formData) {
@@ -87,12 +95,16 @@ function updateData(formData) {
     selectedRow.cells[2].textContent = formData.phone;
     selectedRow.cells[3].textContent = formData.gender;
     document.querySelector("input[type='submit']").value = "Submit";
+
+    selectedRow.classList.remove("highlight-row");
 }
 
 function deleteData(td) {
     if (confirm("Do you want to delete this record?")) {
         var row = td.parentElement.parentElement;
         document.getElementById("details").deleteRow(row.rowIndex);
+        clearForm();
+        document.querySelector("input[type='submit']").value="Submit";
     }
 }
 
