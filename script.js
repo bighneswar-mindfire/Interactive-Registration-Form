@@ -1,10 +1,8 @@
 var selectedRow = null;
 
 function formSubmit() {
-    console.log("hello");
-
     var formData = inputData();
-    console.log(formData);
+    
     if (validate(formData)) {
         if (selectedRow == null) {
             insertRecord(formData);
