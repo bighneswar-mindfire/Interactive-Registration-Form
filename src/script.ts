@@ -48,8 +48,8 @@ function insertRecord(formData : UserData):void{
     newRow.appendChild(genderCell);
 
     var btnCell=document.createElement("td");
-    btnCell.innerHTML=`<a>Edit</a>
-                    <a>Delete</a>`;
+    btnCell.innerHTML=`<button id="edit" onclick="onEdit(this)">Edit</button>
+                        <button  id="delete" onclick="deleteData(this)">Delete</button>`;
     newRow.appendChild(btnCell);
 
     table.append(newRow);
@@ -64,4 +64,13 @@ function clearForm():void{
     radios.forEach(radio => {
         radio.checked=false;
     });
+}
+
+function deleteData(td:HTMLElement):void {
+    if (confirm("Do you want to delete this record?")) {
+        var row = td.parentElement?.parentElement as HTMLTableRowElement;
+        (document.getElementById("details") as HTMLTableElement ).deleteRow(row.rowIndex);
+        clearForm();
+        (document.querySelector("input[type='submit']") as HTMLInputElement).value="Submit";
+    }
 }
