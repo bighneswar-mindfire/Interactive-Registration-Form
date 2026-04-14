@@ -12,13 +12,15 @@ function formSubmit(): void {
 
     var formData: UserData = inputData();
     console.log(formData);
+    if (validate(formData)) {
 
-    if (selectedRow == null) {
+        if (selectedRow == null) {
             insertRecord(formData);
-    } else {
-        updateData(formData);
+        } else {
+            updateData(formData);
+        }
+        clearForm();
     }
-    clearForm();
 }
 
 function inputData(): UserData {
@@ -26,7 +28,7 @@ function inputData(): UserData {
         name: (document.getElementById("name") as HTMLInputElement).value,
         mail: (document.getElementById("mail") as HTMLInputElement).value,
         phone: (document.getElementById("phone") as HTMLInputElement).value,
-        gender: (document.querySelector('input[name="gender"]:checked') as HTMLInputElement).value,
+        gender: (document.querySelector('input[name="gender"]:checked') as HTMLInputElement | null)?.value || "",
     };
 
 
@@ -89,7 +91,7 @@ function onEdit(td: HTMLElement): void {
     const radios = (document.querySelectorAll('input[name="gender"]') as NodeListOf<HTMLInputElement>);
     radios.forEach(radio => {
         // if the condition matches then returns true else false
-        if(selectedRow!=null)
+        if (selectedRow != null)
             radio.checked = radio.value == selectedRow.cells[3]!.textContent;
     });
 
@@ -100,7 +102,7 @@ function onEdit(td: HTMLElement): void {
 
 function updateData(formData: UserData): void {
 
-    if(selectedRow==null) return;
+    if (selectedRow == null) return;
 
     selectedRow.cells[0]!.textContent = formData.name;
     selectedRow.cells[1]!.textContent = formData.mail;
@@ -118,6 +120,44 @@ function deleteData(td: HTMLElement): void {
         (document.getElementById("details") as HTMLTableElement).deleteRow(row.rowIndex);
         clearForm();
         (document.querySelector("input[type='submit']") as HTMLInputElement).value = "Submit";
-        selectedRow=null;
+        selectedRow = null;
     }
+}
+
+function validate(formData: UserData): boolean {
+    var valid: boolean = true;
+
+    if (formData.name == "") {
+        valid = false;
+        document.getElementById("nameValidation")?.classList.remove("hide");
+    } else {
+        if (!document.getElementById("nameValidation")?.classList.contains("hide"))
+            document.getElementById("nameValidation")?.classList.add("hide");
+    }
+
+    if (formData.mail == "") {
+        valid = false;
+        document.getElementById("mailValidation")?.classList.remove("hide");
+    } else {
+        if (!document.getElementById("mailValidation")?.classList.contains("hide"))
+            document.getElementById("mailValidation")?.classList.add("hide");
+    }
+
+    if (formData.phone == "") {
+        valid = false;
+        document.getElementById("phoneValidation")?.classList.remove("hide");
+    } else {
+        if (!document.getElementById("phoneValidation")?.classList.contains("hide"))
+            document.getElementById("phoneValidation")?.classList.add("hide");
+    }
+
+    if (formData.gender == "") {
+        valid = false;
+        document.getElementById("genderValidation")?.classList.remove("hide");
+    } else {
+        if (!document.getElementById("genderValidation")?.classList.contains("hide"))
+            document.getElementById("genderValidation")?.classList.add("hide");
+    }
+
+    return valid;
 }
