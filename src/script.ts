@@ -73,9 +73,12 @@ function clearForm(): void {
     radios.forEach(radio => {
         radio.checked = false;
     });
+    selectedRow = null;
 }
 
 function onEdit(td: HTMLElement): void {
+    selectedRow?.classList.remove("highlight-row");
+
     selectedRow = td.parentElement?.parentElement as HTMLTableRowElement;
 
     var allValidations = document.querySelectorAll(".validation");
@@ -115,6 +118,7 @@ function updateData(formData: UserData): void {
 }
 
 function deleteData(td: HTMLElement): void {
+    selectedRow?.classList.remove("highlight-row");
     if (confirm("Do you want to delete this record?")) {
         var row = td.parentElement?.parentElement as HTMLTableRowElement;
         (document.getElementById("details") as HTMLTableElement).deleteRow(row.rowIndex);
