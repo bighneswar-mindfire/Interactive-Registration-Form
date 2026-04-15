@@ -8,7 +8,6 @@ interface UserData {
 var selectedRow: HTMLTableRowElement | null = null;
 
 function formSubmit(): void {
-    console.log("hello");
 
     var formData: UserData = inputData();
     console.log(formData);
